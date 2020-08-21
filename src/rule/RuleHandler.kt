@@ -1,8 +1,6 @@
 package rule
 
-import rule.*
 import player.Player
-import dice.Dice
 import scoreboard.Board
 
 
@@ -21,16 +19,24 @@ object RuleHandler {
     //call when a game start.
     fun gameStart() {
         board.initBoard()
-
-        //set player names.
+        player1.setPlayerName(); player2.setPlayerName()
         board.setPlayerName(player1.player1Name, player2.player2Name)
+
+
+    }
+
+    fun turn() {
+
+        player1.rollDice()
+
+
     }
 
     //call when it need to rolled.
-    fun rollTheDice() {
-
-
-
+    fun rollDiceHandler() {
+        //each player roll the dice.
+        player1.rollDice()
+        player2.rollDice()
 
     }
 
@@ -39,6 +45,6 @@ object RuleHandler {
 //main function for test and debug.
 fun main() {
     RuleHandler.gameStart()
-
+    RuleHandler.rollDiceHandler()
 
 }

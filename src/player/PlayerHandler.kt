@@ -17,6 +17,7 @@ class Player(){
     private val ply1Dice = mutableListOf<Dice>()
     private val ply2Dice = mutableListOf<Dice>()
 
+
     init {
         for (i in (1..ply1DiceCount)){
             ply1Dice.add(Dice(i))
@@ -32,4 +33,16 @@ class Player(){
         this.player2Name = readLine().toString()
     }
 
+    fun rollDice() {
+        for (i in (1..ply1DiceCount)){
+            ply1Dice[i].roll()
+        }
+        for (i in (1..ply2DiceCount)){
+            ply2Dice[i].roll()
+        }
+    }
+
+    fun selectDice() {
+
+    }
 }
