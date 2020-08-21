@@ -44,5 +44,5 @@ fun main() {
 }
 
 fun main() {
-
+ print("test")
 }
