@@ -1,6 +1,7 @@
 package player
 
 import dice.Dice
+import java.time.Period
 
 class Player(){
     //Each player's name. Initialized with null value.
@@ -19,10 +20,10 @@ class Player(){
 
 
     init {
-        for (i in (1..ply1DiceCount)){
+        for (i in (0 until ply1DiceCount)){
             ply1Dice.add(Dice(i))
         }
-        for (i in (1..ply2DiceCount)){
+        for (i in (0 until ply2DiceCount)){
             ply2Dice.add(Dice(i))
         }
     }
@@ -34,15 +35,24 @@ class Player(){
     }
 
     fun rollDice() {
-        for (i in (1..ply1DiceCount)){
+        for (i in (0..4)){
             ply1Dice[i].roll()
+            //print(ply1Dice[i].diceNumber)
+            //println(ply1Dice[i].number)
         }
-        for (i in (1..ply2DiceCount)){
+        for (i in (0..4)){
             ply2Dice[i].roll()
+            //print(ply2Dice[i].diceNumber)
+            //println(ply2Dice[i].number)
         }
     }
 
     fun selectDice() {
 
     }
+}
+
+fun main() {
+    val a = Player()
+    a.rollDice()
 }

@@ -13,7 +13,7 @@ object RuleHandler {
     private val player2 = Player()
 
     //make board instance
-    var board = Board()
+    private var board = Board()
 
 
     //call when a game start.
@@ -21,7 +21,6 @@ object RuleHandler {
         board.initBoard()
         player1.setPlayerName(); player2.setPlayerName()
         board.setPlayerName(player1.player1Name, player2.player2Name)
-
 
     }
 

@@ -7,12 +7,14 @@ class Dice(val diceNumber: Int) {
     var number: Int = 0
 
     //Rolling the dice.
-    fun roll(): Int {
+    fun roll(){
         val tempRandom = (1..6).random()
         this.number = tempRandom
+        /*
         println(this.number)
         println(tempRandom)
-        return this.number
+
+         */
     }
 }
 
