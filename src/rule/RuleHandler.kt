@@ -20,7 +20,7 @@ object RuleHandler {
     fun gameStart() {
         board.initBoard()
         player1.setPlayerName(); player2.setPlayerName()
-        board.setPlayerName(player1.player1Name, player2.player2Name)
+        board.setPlayerName(player1.playerName, player2.playerName)
 
     }
 

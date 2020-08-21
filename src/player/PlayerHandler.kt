@@ -1,58 +1,81 @@
 package player
 
 import dice.Dice
-import java.time.Period
 
 class Player(){
-    //Each player's name. Initialized with null value.
-    var player1Name: String = "null"
-    var player2Name: String = "null"
+    var playerName: String = "null"
 
     //number of each player's dice.
     //the default count is DefaultDiceCount(5)
     //why variable of enum class does not treat as Int? need to fix it later.
-    var ply1DiceCount: Int = 5
-    var ply2DiceCount: Int = 5
+    var diceCount: Int = 5
 
     //list of dice instance of each players.
-    private val ply1Dice = mutableListOf<Dice>()
-    private val ply2Dice = mutableListOf<Dice>()
+    val plyDice = mutableListOf<Dice>()
+
+    val savedDice = mutableListOf<Dice>()
 
 
     init {
-        for (i in (0 until ply1DiceCount)){
-            ply1Dice.add(Dice(i))
-        }
-        for (i in (0 until ply2DiceCount)){
-            ply2Dice.add(Dice(i))
+        for (i in (0 until diceCount)){
+            plyDice.add(Dice(i))
         }
     }
 
     fun setPlayerName() {
         //input players name
-        this.player1Name = readLine().toString()
-        this.player2Name = readLine().toString()
+        this.playerName = readLine().toString()
     }
 
     fun rollDice() {
         for (i in (0..4)){
-            ply1Dice[i].roll()
+            plyDice[i].roll()
             //print(ply1Dice[i].diceNumber)
             //println(ply1Dice[i].number)
-        }
-        for (i in (0..4)){
-            ply2Dice[i].roll()
-            //print(ply2Dice[i].diceNumber)
-            //println(ply2Dice[i].number)
         }
     }
 
     fun selectDice() {
+        verify@while (true) {
+            print("""Input dice number(1~$)(split with blank) : """)
+            //input dice number
+            val inputDiceNumber = readLine()!!.split(" ")
 
+            //verify inputted dice number's range(1~6)
+            for (i in inputDiceNumber) {
+                if (i !in "1".."6"){
+                    //if one of the inputted number isn't in 1 to 6,
+                    //input number again.
+                    println("Range Error! Please input number range of 1 to 6")
+                    continue@verify
+                }
+            }
+
+            //verify if there is same number in list.
+            for (i in inputDiceNumber.indices) {
+                for (j in ((i + 1) until inputDiceNumber.size)) {
+                    if (inputDiceNumber[i] == inputDiceNumber[j]) {
+                        //if there is same dice number,
+                        //input numbers again.
+                        println("Verify Error! Please don't input same numbers.")
+                        continue@verify
+                    }
+                }
+            }
+            //if same numbers doesn't exist, break the while(true) loop.
+            break@verify
+        }
+    }
+
+    fun numberPrint() {
+        print("player's name : ")
+        println(playerName)
+
+        print("")
     }
 }
 
 fun main() {
     val a = Player()
-    a.rollDice()
+    a.selectDice()
 }
