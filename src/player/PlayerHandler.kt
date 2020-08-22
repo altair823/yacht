@@ -44,25 +44,47 @@ class Player(){
 
         //reassign list of dice number.
         this.diceNumberList = Dice().roll(this.remainDiceCount)
-        //println(this.diceNumberList)
+        println(this.diceNumberList)
     }
 
     fun selectDice() {
 
-        //number input and verify.
-        val tempInputNumberList = Stream().verifyInput(this.remainDiceCount)
-
-
-        //println(tempInputNumberList)
-        //println(this.savedDiceNumber)
-
+        //First section: saving numbers of dice.
+        //////////////////////////
+        //numbers are inputting and verifying.
+        val tempInputSaveNumberList = Stream().verifyInput(this.remainDiceCount)
         //save number of dice which has same index number(actually, it has index-1)
         //with inputted number.
-        for (i in tempInputNumberList){
+        for (i in tempInputSaveNumberList){
             this.savedDiceNumber.add(this.diceNumberList[i-1])
         }
         this.remainDiceCount = this.remainDiceCount - this.savedDiceNumber.size
+        //////////////////////////
+        println(savedDiceNumber)
+        //Second section: deleting numbers of dice from savedDiceNumber for re-rolling
+        //////////////////////////
+        //numbers are inputting and verifying
+        val tempInputThrowNumberList = Stream().verifyInput(5-this.remainDiceCount)
+        print("tempInputTNL")
+        println(tempInputThrowNumberList)
+        //throw away numbers of dice which has inputted index number.
+        print("savedDN")
+        println(this.savedDiceNumber)
 
+        //this.savedDiceNumber.replaceAll(tempInputThrowNumberList)
+
+        for (i in tempInputThrowNumberList) {
+            this.savedDiceNumber.removeAt(this.savedDiceNumber[i-1])
+            print(i-1)
+            print("savedDN")
+            println(this.savedDiceNumber[i-1])
+
+        }
+        print("savedDN")
+        println(this.savedDiceNumber)
+        //this.remainDiceCount = this.remainDiceCount + this.tempInputThrowNumberList.size
+
+        //////////////////////////
     }
 
     fun numberPrint() {
