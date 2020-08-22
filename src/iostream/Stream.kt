@@ -70,6 +70,25 @@ class Stream(){
             }
         }
     }
+
+    //
+    fun numPrint(diceList: MutableList<Int>,listType: String = "" , playerName: String = "") {
+        if (playerName != ""){
+            print(playerName)
+        }
+
+        if (listType != ""){
+            print(" | $listType Dice >>")
+        }
+        else{
+            print(" | Dice >>")
+        }
+
+        for (i in diceList){
+            print(" [$i] ")
+        }
+        println()
+    }
 }
 
 fun main() {

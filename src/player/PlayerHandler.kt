@@ -15,7 +15,7 @@ class Player(){
     private var diceNumberList = mutableListOf<Int>()
 
     //list of numbers which player picked
-    private var savedDiceNumber = mutableListOf<Int>()
+    var savedDiceNumber = mutableListOf<Int>()
 
     fun setPlayerName() {
         //input player name
@@ -26,7 +26,9 @@ class Player(){
 
         //reassign list of dice number.
         this.diceNumberList = Dice().roll(this.remainDiceCount)
-        print("<Dice> : "); println(this.diceNumberList)
+
+        Stream().numPrint(diceNumberList, listType = "Rolled", playerName = playerName)
+        //print("<Dice> : "); println(this.diceNumberList)
     }
 
     fun selectDice() {
@@ -62,40 +64,17 @@ class Player(){
         //////////////////////////
 
         numberPrint()
+        println()
     }
 
     fun endPlayerTurn() {
         savedDiceNumber.addAll(diceNumberList)
         numberPrint()
+        println()
     }
 
     private fun numberPrint() {
-        print("|Saved : "); println(savedDiceNumber)
+        Stream().numPrint(savedDiceNumber, listType = "Saved" , playerName = playerName)
+        //print("|Saved : "); println(savedDiceNumber)
     }
-}
-
-fun main() {
-
-    val a = Player()
-    val b = Player()
-    a.setPlayerName()
-    b.setPlayerName()
-
-    a.rollDice()
-    a.selectDice()
-    b.rollDice()
-    b.selectDice()
-
-    a.rollDice()
-    a.selectDice()
-    b.rollDice()
-    b.selectDice()
-
-    a.rollDice()
-    a.selectDice()
-    b.rollDice()
-    b.selectDice()
-
-    a.endPlayerTurn()
-    b.endPlayerTurn()
 }

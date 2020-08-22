@@ -2,7 +2,7 @@ package rule
 
 import player.Player
 import scoreboard.Board
-
+import algorithm.CheckHands
 
 
 //Game rule handler
@@ -27,23 +27,24 @@ object RuleHandler {
     fun turn() {
 
         player1.rollDice()
+        player1.selectDice()
 
-
-    }
-
-    //call when it need to rolled.
-    fun rollDiceHandler() {
-        //each player roll the dice.
         player1.rollDice()
+        player1.selectDice()
+
+        player1.rollDice()
+        player1.endPlayerTurn()
+
+
         player2.rollDice()
+        player2.selectDice()
+
+        player2.rollDice()
+        player2.selectDice()
+
+        player2.rollDice()
+        player2.endPlayerTurn()
 
     }
-
-}
-
-//main function for test and debug.
-fun main() {
-    RuleHandler.gameStart()
-    RuleHandler.rollDiceHandler()
 
 }

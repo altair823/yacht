@@ -8,8 +8,8 @@ class Board {
     var twoPly1Cnt: Int = 0; var twoPly2Cnt: Int = 0 //number of player2's dice which has 2
     var threePly1Cnt: Int = 0; var threePly2Cnt: Int = 0
     var forthPly1Cnt: Int = 0; var forthPly2Cnt: Int = 0
-    var fifthPly1Cnt: Int = 0; var fifthPly2Cnt: Int = 0
-    var sixthPly1Cnt: Int = 0; var sixthPly2Cnt: Int = 0
+    var fivePly1Cnt: Int = 0; var fivePly2Cnt: Int = 0
+    var sixPly1Cnt: Int = 0; var sixPly2Cnt: Int = 0
 
     //The second section of the Score board.
     var choicePly1: Int = 0; var choicePly2: Int = 0 //Choice
@@ -35,8 +35,8 @@ class Board {
         this.twoPly1Cnt = 0;       this.twoPly2Cnt = 0
         this.threePly1Cnt = 0;     this.threePly2Cnt = 0
         this.forthPly1Cnt = 0;     this.fourOfKindPly2 = 0
-        this.fifthPly1Cnt = 0;     this.fifthPly2Cnt = 0
-        this.sixthPly1Cnt = 0;     this.sixthPly2Cnt = 0
+        this.fivePly1Cnt = 0;     this.fivePly2Cnt = 0
+        this.sixPly1Cnt = 0;     this.sixPly2Cnt = 0
 
         this.choicePly1 = 0;       this.choicePly2 = 0
         this.fourOfKindPly1 = 0;   this.fourOfKindPly2 = 0
