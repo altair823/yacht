@@ -1,6 +1,8 @@
 package iostream
 
 class Stream(){
+
+    //check inputted numbers.
     fun verifyInput(rollableDiceCount: Int): MutableList<Int>{
 
         val returnInputDiceNumber: MutableList<Int> = mutableListOf()
@@ -10,6 +12,11 @@ class Stream(){
             //input dice number
             val inputDiceNumber = readLine()!!.split(" ")
 
+            //if there is no choice,
+            //break the loop and do nothing.
+            if (inputDiceNumber[0] == ""){
+                break@verify
+            }
             //verify inputted dice number's range(1~#)
             for (i in inputDiceNumber) {
                 if (i !in "1"..rollableDiceCount.toString()){
@@ -33,21 +40,6 @@ class Stream(){
                 }
             }
 
-            /*
-            //compare input number with number of saved dice.
-            for (i in alreadySavedDiceList){
-                for (j in inputDiceNumber){
-                    if (i == j.toInt()){
-                        //if one of the inputted number is same with number of saved dice,
-                        //input number again
-                        println("Verify Error! Please input number doesn't exist.")
-                        continue@verify
-                    }
-                }
-            }
-            if (diceCount)
-            */
-
             //if verify complete, break the while(true) loop.
             for (i in (inputDiceNumber.indices)){
                 returnInputDiceNumber.add(0)
@@ -58,6 +50,25 @@ class Stream(){
 
         //return list<int> of numbers of dice.
         return returnInputDiceNumber
+    }
+
+    //function for setting player's name.
+    fun nameIO(nameIn: String? = null): String {
+        var nameOut: String?
+        while(true) {
+            print("Please input player's name : ")
+            nameOut = readLine()
+
+            //if there is no input,
+            //or if inputted name is same as another player,
+            //require re-input.
+            return if ((nameOut == null)||(nameOut == nameIn)||(nameOut == "")) {
+                println("invalid name input.")
+                continue
+            } else {
+                nameOut
+            }
+        }
     }
 }
 

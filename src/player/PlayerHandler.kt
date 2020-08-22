@@ -4,7 +4,7 @@ import dice.Dice
 import iostream.Stream
 
 class Player(){
-    var playerName: String = "null"
+    var playerName: String = ""
 
     //number of each player's dice.
     //the default count is DefaultDiceCount(5)
@@ -17,30 +17,12 @@ class Player(){
     //list of numbers which player picked
     private var savedDiceNumber = mutableListOf<Int>()
 
-
-    init {
-        /*
-        for (i in (0 until diceCount)){
-            plyDice.add(Dice(i))
-        }
-
-         */
-    }
-
     fun setPlayerName() {
-        //input players name
-        this.playerName = readLine().toString()
+        //input player name
+        playerName = Stream().nameIO()
     }
 
     fun rollDice() {
-        /*
-        for (i in (0..4)){
-            plyDice[i].roll()
-            //print(ply1Dice[i].diceNumber)
-            //println(ply1Dice[i].number)
-        }
-
-         */
 
         //reassign list of dice number.
         this.diceNumberList = Dice().roll(this.remainDiceCount)
@@ -49,6 +31,8 @@ class Player(){
 
     fun selectDice() {
 
+
+        //////////////////////////
         //First section: saving numbers of dice.
         //////////////////////////
         //numbers are inputting and verifying.
@@ -60,43 +44,39 @@ class Player(){
         }
         this.remainDiceCount = this.remainDiceCount - this.savedDiceNumber.size
         //////////////////////////
-        println(savedDiceNumber)
+        //////////////////////////
+
+
+
+        //////////////////////////
         //Second section: deleting numbers of dice from savedDiceNumber for re-rolling
         //////////////////////////
         //numbers are inputting and verifying
-        val tempInputThrowNumberList = Stream().verifyInput(5-this.remainDiceCount)
-        print("tempInputTNL")
-        println(tempInputThrowNumberList)
-        //throw away numbers of dice which has inputted index number.
-        print("savedDN")
-        println(this.savedDiceNumber)
-
-        //this.savedDiceNumber.replaceAll(tempInputThrowNumberList)
-
+        var tempInputThrowNumberList = Stream().verifyInput(5-this.remainDiceCount)
+        //sort the list which include numbers has to throw away.
+        tempInputThrowNumberList = tempInputThrowNumberList.sortedDescending().toMutableList()
+        //throw away numbers which has inputted index number.
         for (i in tempInputThrowNumberList) {
-            this.savedDiceNumber.removeAt(this.savedDiceNumber[i-1])
-            print(i-1)
-            print("savedDN")
-            println(this.savedDiceNumber[i-1])
-
+            this.savedDiceNumber.removeAt(i - 1)
         }
-        print("savedDN")
-        println(this.savedDiceNumber)
-        //this.remainDiceCount = this.remainDiceCount + this.tempInputThrowNumberList.size
-
+        //////////////////////////
         //////////////////////////
     }
 
     fun numberPrint() {
-        print("player's name : ")
-        println(this.playerName)
 
-        print("")
+
+
     }
 }
 
 fun main() {
     val a = Player()
+    a.numberPrint()
+    a.rollDice()
+    a.selectDice()
+    a.rollDice()
+    a.selectDice()
     a.rollDice()
     a.selectDice()
 }
