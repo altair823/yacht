@@ -26,12 +26,10 @@ class Player(){
 
         //reassign list of dice number.
         this.diceNumberList = Dice().roll(this.remainDiceCount)
-        println(this.diceNumberList)
+        print("<Dice> : "); println(this.diceNumberList)
     }
 
     fun selectDice() {
-
-
         //////////////////////////
         //First section: saving numbers of dice.
         //////////////////////////
@@ -42,11 +40,11 @@ class Player(){
         for (i in tempInputSaveNumberList){
             this.savedDiceNumber.add(this.diceNumberList[i-1])
         }
-        this.remainDiceCount = this.remainDiceCount - this.savedDiceNumber.size
+        this.remainDiceCount = this.remainDiceCount - tempInputSaveNumberList.size
         //////////////////////////
         //////////////////////////
 
-
+        numberPrint()
 
         //////////////////////////
         //Second section: deleting numbers of dice from savedDiceNumber for re-rolling
@@ -59,24 +57,45 @@ class Player(){
         for (i in tempInputThrowNumberList) {
             this.savedDiceNumber.removeAt(i - 1)
         }
+        this.remainDiceCount = this.remainDiceCount + tempInputThrowNumberList.size
         //////////////////////////
         //////////////////////////
+
+        numberPrint()
     }
 
-    fun numberPrint() {
+    fun endPlayerTurn() {
+        savedDiceNumber.addAll(diceNumberList)
+        numberPrint()
+    }
 
-
-
+    private fun numberPrint() {
+        print("|Saved : "); println(savedDiceNumber)
     }
 }
 
 fun main() {
+
     val a = Player()
-    a.numberPrint()
+    val b = Player()
+    a.setPlayerName()
+    b.setPlayerName()
+
     a.rollDice()
     a.selectDice()
+    b.rollDice()
+    b.selectDice()
+
     a.rollDice()
     a.selectDice()
+    b.rollDice()
+    b.selectDice()
+
     a.rollDice()
     a.selectDice()
+    b.rollDice()
+    b.selectDice()
+
+    a.endPlayerTurn()
+    b.endPlayerTurn()
 }

@@ -66,7 +66,7 @@ class Stream(){
                 println("invalid name input.")
                 continue
             } else {
-                nameOut
+                nameOut.also { println("Set player's name as $nameOut") }
             }
         }
     }
