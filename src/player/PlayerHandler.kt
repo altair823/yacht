@@ -1,6 +1,7 @@
 package player
 
 import dice.Dice
+import iostream.Stream
 
 class Player(){
     var playerName: String = "null"
@@ -8,18 +9,22 @@ class Player(){
     //number of each player's dice.
     //the default count is DefaultDiceCount(5)
     //why variable of enum class does not treat as Int? need to fix it later.
-    var diceCount: Int = 5
+    private var remainDiceCount: Int = 5
 
-    //list of dice instance of each players.
-    val plyDice = mutableListOf<Dice>()
+    //list of numbers of rolled dice.
+    private var diceNumberList = mutableListOf<Int>()
 
-    val savedDice = mutableListOf<Dice>()
+    //list of numbers which player picked
+    private var savedDiceNumber = mutableListOf<Int>()
 
 
     init {
+        /*
         for (i in (0 until diceCount)){
             plyDice.add(Dice(i))
         }
+
+         */
     }
 
     fun setPlayerName() {
@@ -28,48 +33,41 @@ class Player(){
     }
 
     fun rollDice() {
+        /*
         for (i in (0..4)){
             plyDice[i].roll()
             //print(ply1Dice[i].diceNumber)
             //println(ply1Dice[i].number)
         }
+
+         */
+
+        //reassign list of dice number.
+        this.diceNumberList = Dice().roll(this.remainDiceCount)
+        //println(this.diceNumberList)
     }
 
     fun selectDice() {
-        verify@while (true) {
-            print("""Input dice number(1~$)(split with blank) : """)
-            //input dice number
-            val inputDiceNumber = readLine()!!.split(" ")
 
-            //verify inputted dice number's range(1~6)
-            for (i in inputDiceNumber) {
-                if (i !in "1".."6"){
-                    //if one of the inputted number isn't in 1 to 6,
-                    //input number again.
-                    println("Range Error! Please input number range of 1 to 6")
-                    continue@verify
-                }
-            }
+        //number input and verify.
+        val tempInputNumberList = Stream().verifyInput(this.remainDiceCount)
 
-            //verify if there is same number in list.
-            for (i in inputDiceNumber.indices) {
-                for (j in ((i + 1) until inputDiceNumber.size)) {
-                    if (inputDiceNumber[i] == inputDiceNumber[j]) {
-                        //if there is same dice number,
-                        //input numbers again.
-                        println("Verify Error! Please don't input same numbers.")
-                        continue@verify
-                    }
-                }
-            }
-            //if same numbers doesn't exist, break the while(true) loop.
-            break@verify
+
+        //println(tempInputNumberList)
+        //println(this.savedDiceNumber)
+
+        //save number of dice which has same index number(actually, it has index-1)
+        //with inputted number.
+        for (i in tempInputNumberList){
+            this.savedDiceNumber.add(this.diceNumberList[i-1])
         }
+        this.remainDiceCount = this.remainDiceCount - this.savedDiceNumber.size
+
     }
 
     fun numberPrint() {
         print("player's name : ")
-        println(playerName)
+        println(this.playerName)
 
         print("")
     }
@@ -77,5 +75,6 @@ class Player(){
 
 fun main() {
     val a = Player()
+    a.rollDice()
     a.selectDice()
 }

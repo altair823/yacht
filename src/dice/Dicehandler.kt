@@ -1,20 +1,18 @@
 package dice
 
 //The class of a dice.
-class Dice(val diceNumber: Int) {
+class Dice() {
 
     //Current number of dice.
-    var number: Int = 0
+    val numberList = mutableListOf<Int>()
 
     //Rolling the dice.
-    fun roll(){
-        val tempRandom = (1..6).random()
-        this.number = tempRandom
-        /*
-        println(this.number)
-        println(tempRandom)
-
-         */
+    fun roll(diceCount: Int): MutableList<Int>{
+        for (i in 1..diceCount){
+            val tempRandom = (1..6).random()
+            numberList.add(tempRandom)
+        }
+        return numberList
     }
 }
 
