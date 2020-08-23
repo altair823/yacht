@@ -49,10 +49,10 @@ object RuleHandler {
     }
 
     fun checkDice() {
-        val player1SameNumberList = CheckHands.sameCheck(player1)
-        val player2SameNumberList = CheckHands.sameCheck(player2)
+        //val player1SameNumberList = CheckHands.sameCheck(player1)
+        //val player2SameNumberList = CheckHands.sameCheck(player2)
 
-        println(player1SameNumberList)
-        println(player2SameNumberList)
+        //println(player1SameNumberList)
+        //println(player2SameNumberList)
     }
 }
