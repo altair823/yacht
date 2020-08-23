@@ -1,5 +1,6 @@
 package player
 
+import algorithm.CheckHands
 import dice.Dice
 import iostream.Stream
 
@@ -65,6 +66,7 @@ class Player(){
 
         numberPrint()
         println()
+       println(CheckHands.checkDiceNumber(this.savedDiceNumberList))
     }
 
     fun endPlayerTurn() {

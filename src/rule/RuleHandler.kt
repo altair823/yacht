@@ -29,26 +29,39 @@ object RuleHandler {
 
         player1.rollDice()
         player1.selectDice()
+        //println(CheckHands.checkDiceNumber(player1.savedDiceNumberList))
 
         player1.rollDice()
         player1.selectDice()
+        //println(CheckHands.checkDiceNumber(player1.savedDiceNumberList))
 
         player1.rollDice()
         player1.endPlayerTurn()
+        //println(CheckHands.checkDiceNumber(player1.savedDiceNumberList))
 
 
         player2.rollDice()
         player2.selectDice()
+        //println(CheckHands.checkDiceNumber(player2.savedDiceNumberList))
 
         player2.rollDice()
         player2.selectDice()
+        //println(CheckHands.checkDiceNumber(player2.savedDiceNumberList))
 
         player2.rollDice()
         player2.endPlayerTurn()
+        //println(CheckHands.checkDiceNumber(player2.savedDiceNumberList))
 
     }
 
     fun checkDice() {
+
+        val player1Point = CheckHands.checkDiceNumber(player1.savedDiceNumberList)
+        val player2Point = CheckHands.checkDiceNumber(player2.savedDiceNumberList)
+
+        println(player1Point)
+        println(player2Point)
+
         //val player1SameNumberList = CheckHands.sameCheck(player1)
         //val player2SameNumberList = CheckHands.sameCheck(player2)
 

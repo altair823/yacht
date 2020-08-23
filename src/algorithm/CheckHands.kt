@@ -28,7 +28,7 @@ object CheckHands {
         //yacht
         point.add(yacht(diceNumberList))
 
-        println(point)
+        //println(point)
         return point
     }
 
@@ -39,7 +39,7 @@ object CheckHands {
         val count = mutableListOf<Int>(0, 0, 0, 0, 0, 0)
 
         //store each number's count in the list.
-        for (i in diceNumberList){ count[i-1] += 1 }
+        for (i in diceNumberList){ count[i-1] += i }
         return count
     }
 
@@ -56,13 +56,9 @@ object CheckHands {
     private fun fourOfKind(diceNumberList: List<Int>): Int {
         for (i in 0..1){
             var tempSameNumberCount = 1
-            var tempSameNumber = 0
             for (j in (i+1) until diceNumberList.size){
                 if (diceNumberList[i] == diceNumberList[j]){
                     tempSameNumberCount += 1
-                    print("$i $j ")
-                    println(tempSameNumberCount)
-                    tempSameNumber = diceNumberList[i]
                 }
             }
             if (tempSameNumberCount >= 4){
@@ -124,8 +120,4 @@ object CheckHands {
         }
         return 0
     }
-}
-fun main() {
-    val a = listOf<Int>(1, 1, 1, 6, 1)
-    CheckHands.checkDiceNumber(a)
 }
