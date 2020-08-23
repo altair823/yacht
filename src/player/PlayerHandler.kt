@@ -15,7 +15,7 @@ class Player(){
     private var diceNumberList = mutableListOf<Int>()
 
     //list of numbers which player picked
-    var savedDiceNumber = mutableListOf<Int>()
+    var savedDiceNumberList = mutableListOf<Int>()
 
     fun setPlayerName() {
         //input player name
@@ -40,7 +40,7 @@ class Player(){
         //save number of dice which has same index number(actually, it has index-1)
         //with inputted number.
         for (i in tempInputSaveNumberList){
-            this.savedDiceNumber.add(this.diceNumberList[i-1])
+            this.savedDiceNumberList.add(this.diceNumberList[i-1])
         }
         this.remainDiceCount = this.remainDiceCount - tempInputSaveNumberList.size
         //////////////////////////
@@ -57,7 +57,7 @@ class Player(){
         tempInputThrowNumberList = tempInputThrowNumberList.sortedDescending().toMutableList()
         //throw away numbers which has inputted index number.
         for (i in tempInputThrowNumberList) {
-            this.savedDiceNumber.removeAt(i - 1)
+            this.savedDiceNumberList.removeAt(i - 1)
         }
         this.remainDiceCount = this.remainDiceCount + tempInputThrowNumberList.size
         //////////////////////////
@@ -68,13 +68,13 @@ class Player(){
     }
 
     fun endPlayerTurn() {
-        savedDiceNumber.addAll(diceNumberList)
+        savedDiceNumberList.addAll(diceNumberList)
         numberPrint()
         println()
     }
 
     private fun numberPrint() {
-        Stream().numPrint(savedDiceNumber, listType = "Saved" , playerName = playerName)
+        Stream().numPrint(savedDiceNumberList, listType = "Saved" , playerName = playerName)
         //print("|Saved : "); println(savedDiceNumber)
     }
 }

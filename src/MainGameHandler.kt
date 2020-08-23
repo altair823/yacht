@@ -13,4 +13,5 @@ import rule.RuleHandler
 fun main(){
     RuleHandler.gameStart()
     RuleHandler.turn()
+    RuleHandler.checkDice()
 }
