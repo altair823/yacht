@@ -1,6 +1,8 @@
 package iostream
 
-class Stream(){
+import player.Player
+
+object Stream{
 
     //check inputted numbers.
     fun verifyInput(rollableDiceCount: Int): MutableList<Int>{
@@ -89,9 +91,32 @@ class Stream(){
         }
         println()
     }
+
+    //input choice of player's hands.
+    fun choiceInput(player: Player, playerPoint: List<Int>){
+
+
+        println("   | available point number >> 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12")
+        print("${player.playerName} | available point list   >> ")
+        println(playerPoint)
+        while (true) {
+            print("Please input point number >> ")
+            var choice = readLine().toString()
+
+            //section of checking null and range of choice input.
+            if (choice == ""){
+                println("Input checking Error! Please input again.")
+                continue
+            }
+            if ((choice.toInt()>12)||(choice.toInt()<1)){
+                println("Input range Error! Please input again.")
+                continue
+            }
+
+
+        }
+    }
 }
 
 fun main() {
-    val a = Stream()
-    println(a.verifyInput(1))
 }

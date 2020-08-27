@@ -20,7 +20,7 @@ class Player(){
 
     fun setPlayerName() {
         //input player name
-        playerName = Stream().nameIO()
+        playerName = Stream.nameIO()
     }
 
     fun rollDice() {
@@ -28,7 +28,7 @@ class Player(){
         //reassign list of dice number.
         this.diceNumberList = Dice().roll(this.remainDiceCount)
 
-        Stream().numPrint(diceNumberList, listType = "Rolled", playerName = playerName)
+        Stream.numPrint(diceNumberList, listType = "Rolled", playerName = playerName)
         //print("<Dice> : "); println(this.diceNumberList)
     }
 
@@ -37,7 +37,7 @@ class Player(){
         //First section: saving numbers of dice.
         //////////////////////////
         //numbers are inputting and verifying.
-        val tempInputSaveNumberList = Stream().verifyInput(this.remainDiceCount)
+        val tempInputSaveNumberList = Stream.verifyInput(this.remainDiceCount)
         //save number of dice which has same index number(actually, it has index-1)
         //with inputted number.
         for (i in tempInputSaveNumberList){
@@ -53,7 +53,7 @@ class Player(){
         //Second section: deleting numbers of dice from savedDiceNumber for re-rolling
         //////////////////////////
         //numbers are inputting and verifying
-        var tempInputThrowNumberList = Stream().verifyInput(5-this.remainDiceCount)
+        var tempInputThrowNumberList = Stream.verifyInput(5-this.remainDiceCount)
         //sort the list which include numbers has to throw away.
         tempInputThrowNumberList = tempInputThrowNumberList.sortedDescending().toMutableList()
         //throw away numbers which has inputted index number.
@@ -76,7 +76,7 @@ class Player(){
     }
 
     private fun numberPrint() {
-        Stream().numPrint(savedDiceNumberList, listType = "Saved" , playerName = playerName)
+        Stream.numPrint(savedDiceNumberList, listType = "Saved" , playerName = playerName)
         //print("|Saved : "); println(savedDiceNumber)
     }
 }
