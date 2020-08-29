@@ -33,7 +33,7 @@ class Board {
      */
 
     var playerName = ""
-    var pointList = mutableListOf<Int>(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+    var pointList = mutableListOf<Int?>()
     var totalPoint = 0
 
 
@@ -61,7 +61,8 @@ class Board {
          */
 
         playerName = ""
-        pointList = mutableListOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+        pointList = mutableListOf<Int?>(null, null, null, null, null, null,
+                                        null, null, null, null, null, null)
         totalPoint = 0
     }
 
@@ -78,7 +79,21 @@ class Board {
         return this.playerName != ""
     }
 
-    fun setPoint(typeLocation: Int, point: Int){
+    //if the section of typical location of board isn't blank,
+    //return -1(error, need to re-input)
+    //else, return 0(not error)
+    fun setPoint(typeLocation: Int, pointListPlayer: MutableList<Int>): Int{
+
+        if (typeLocation == 0){
+            return 1
+        }
+        if (this.pointList[typeLocation-1] != null){
+            return -1
+        }
+        else {
+            this.pointList[typeLocation - 1] = pointListPlayer[typeLocation - 1]
+            return 0
+        }
 
     }
 

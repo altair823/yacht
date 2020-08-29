@@ -5,7 +5,7 @@ object CheckHands {
     //checking section 1
 
     //checking section 2
-    fun checkDiceNumber(diceNumberList: List<Int>): List<Int> {
+    fun checkDiceNumber(diceNumberList: List<Int>): MutableList<Int> {
         val point = mutableListOf<Int>()
 
         point.addAll(sameCheck(diceNumberList))

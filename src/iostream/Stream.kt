@@ -93,7 +93,7 @@ object Stream{
     }
 
     //input choice of player's hands.
-    fun choiceInput(player: Player, playerPoint: List<Int>){
+    fun choiceInput(player: Player, playerPoint: List<Int>): Int{
 
 
         println("   | available point number >> 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12")
@@ -103,15 +103,23 @@ object Stream{
             print("Please input point number >> ")
             var choice = readLine().toString()
 
+            /*
             //section of checking null and range of choice input.
             if (choice == ""){
                 println("Input checking Error! Please input again.")
                 continue
             }
+
+             */
+            if (choice == ""){
+                return 0
+            }
             if ((choice.toInt()>12)||(choice.toInt()<1)){
                 println("Input range Error! Please input again.")
                 continue
             }
+
+            return choice.toInt()
 
 
         }
