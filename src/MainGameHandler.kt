@@ -12,6 +12,7 @@ import rule.RuleHandler
 
 fun main(){
     RuleHandler.gameStart()
-    RuleHandler.turn()
+    RuleHandler.turnPlayer1()
+    RuleHandler.turnPlayer2()
     RuleHandler.checkDice()
 }

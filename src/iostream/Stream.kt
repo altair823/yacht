@@ -1,6 +1,7 @@
 package iostream
 
 import player.Player
+import scoreboard.Board
 
 object Stream{
 
@@ -95,10 +96,11 @@ object Stream{
     //input choice of player's hands.
     fun choiceInput(player: Player, playerPoint: List<Int>): Int{
 
+        println("Available point list >> ")
+        for (i in 0..11 step 2){
+            println("${i + 1}. [${playerPoint[i]}]  |  ${i + 2}. [${playerPoint[i+1]}]")
+        }
 
-        println("   | available point number >> 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12")
-        print("${player.playerName} | available point list   >> ")
-        println(playerPoint)
         while (true) {
             print("Please input point number >> ")
             var choice = readLine().toString()
@@ -124,6 +126,55 @@ object Stream{
 
         }
     }
+
+    fun boardPrint(boardPlayer: Board){
+        println("${boardPlayer.playerName}'s board >> ")
+
+        val tempPointList = mutableListOf<Int>(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+        for (i in 0..11){
+            if (boardPlayer.pointList == null){
+                tempPointList[i] == 0
+            }
+            else{
+                tempPointList[i] == boardPlayer.pointList[i]
+            }
+        }
+
+        //print all inputable section of board.
+        for (i in 0..11 step 2){
+            when (i){
+                0 -> {
+                    print("one: [${tempPointList[0]}]             |  ")
+                    println("two: [${tempPointList[1]}]")
+                }
+                2 -> {
+                    print("three: [${tempPointList[2]}]           |  ")
+                    println("four: [${tempPointList[3]}]")
+                }
+                4 -> {
+                    print("five: [${tempPointList[4]}]            |  ")
+                    println("six: [${tempPointList[5]}]")
+                }
+                6 -> {
+                    print("choice: [${tempPointList[6]}]          |  ")
+                    println("four of a kind: [${tempPointList[7]}]")
+                }
+                8 -> {
+                    print("full house: [${tempPointList[8]}]      |  ")
+                    println("small straight: [${tempPointList[9]}]")
+                }
+                10 -> {
+                    print("large straight: [${tempPointList[10]}]  |  ")
+                    println("yacht: [${tempPointList[11]}]")
+                }
+            }
+        }
+
+        //print total point
+        println("total point: [${boardPlayer.totalPoint}]")
+        println()
+    }
+
 }
 
 fun main() {

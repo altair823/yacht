@@ -35,44 +35,73 @@ object RuleHandler {
     }
 
     //
-    fun turn() {
+    fun turnPlayer1() {
 
         player1.rollDice()
         player1.selectDice()
         //println(CheckHands.checkDiceNumber(player1.savedDiceNumberList))
         checkDice()
+        //print player1's board
+        Stream.boardPrint(boardPlayer1)
         choicePlayer1()
 
         player1.rollDice()
         player1.selectDice()
         //println(CheckHands.checkDiceNumber(player1.savedDiceNumberList))
         checkDice()
+        //print player1's board
+        Stream.boardPrint(boardPlayer1)
         choicePlayer1()
 
         player1.rollDice()
         player1.endPlayerTurn()
         //println(CheckHands.checkDiceNumber(player1.savedDiceNumberList))
         checkDice()
+        //there must be filled when it takes last turn.
+        //print player1's board
+        Stream.boardPrint(boardPlayer1)
         choicePlayer1(1)
 
 
+
+    }
+
+    fun turnPlayer2(): Boolean {
         player2.rollDice()
         player2.selectDice()
         //println(CheckHands.checkDiceNumber(player2.savedDiceNumberList))
         checkDice()
-        choicePlayer2()
+        //print player1's board
+        Stream.boardPrint(boardPlayer2)
+        if (choicePlayer2()){
+            return true
+        }
 
         player2.rollDice()
         player2.selectDice()
         //println(CheckHands.checkDiceNumber(player2.savedDiceNumberList))
         checkDice()
-        choicePlayer2()
+        //print player1's board
+        Stream.boardPrint(boardPlayer2)
+        if (choicePlayer2()){
+            return true
+        }
 
         player2.rollDice()
         player2.endPlayerTurn()
         //println(CheckHands.checkDiceNumber(player2.savedDiceNumberList))
         checkDice()
-        choicePlayer2()
+        //there must be filled when it takes last turn.
+        //print player1's board
+        Stream.boardPrint(boardPlayer2)
+        if (choicePlayer2(1)){
+            return true
+        }
+
+
+        else{
+            return false
+        }
     }
 
     fun checkDice() {
@@ -80,8 +109,8 @@ object RuleHandler {
         pointListPlayer1 = CheckHands.checkDiceNumber(player1.savedDiceNumberList)
         pointListPlayer2 = CheckHands.checkDiceNumber(player2.savedDiceNumberList)
 
-        println(pointListPlayer1)
-        println(pointListPlayer2)
+        //println(pointListPlayer1)
+        //println(pointListPlayer2)
 
         //val player1SameNumberList = CheckHands.sameCheck(player1)
         //val player2SameNumberList = CheckHands.sameCheck(player2)
@@ -91,11 +120,11 @@ object RuleHandler {
     }
 
     private fun choicePlayer1(lastChoice: Int = 0) {
+
+        //print available points.
         while (true) {
-            var choice = Stream.choiceInput(player1, pointListPlayer1)
-            println("$choice---------------------------")
-            var verify = boardPlayer1.setPoint(choice, pointListPlayer1)
-            println("$verify---------------------------")
+            val choice = Stream.choiceInput(player1, pointListPlayer1)
+            val verify = boardPlayer1.setPoint(choice, pointListPlayer1)
             if (((verify == 1) && (lastChoice == 1)) || (verify == -1)){
                 println("please input available choice.")
                 continue
@@ -104,12 +133,16 @@ object RuleHandler {
                 break
             }
         }
-        println(boardPlayer1.pointList)
+        //println(boardPlayer1.pointList)
     }
-    private fun choicePlayer2(lastChoice: Int = 0) {
+
+    private fun choicePlayer2(lastChoice: Int = 0): Boolean {
+        var choice: Int
+
+        //print available points.
         while (true) {
-            var choice = Stream.choiceInput(player2, pointListPlayer2)
-            var verify = boardPlayer2.setPoint(choice, pointListPlayer2)
+            choice = Stream.choiceInput(player2, pointListPlayer2)
+            val verify = boardPlayer2.setPoint(choice, pointListPlayer2)
             if (((verify == 1) && (lastChoice == 1)) || (verify == -1)){
                 continue
             }
@@ -118,6 +151,7 @@ object RuleHandler {
             }
 
         }
-        println(boardPlayer2.pointList)
+        return choice != 0
+        //println(boardPlayer2.pointList)
     }
 }

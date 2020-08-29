@@ -66,7 +66,7 @@ class Player(){
 
         numberPrint()
         println()
-       println(CheckHands.checkDiceNumber(this.savedDiceNumberList))
+        //println(CheckHands.checkDiceNumber(this.savedDiceNumberList))
     }
 
     fun endPlayerTurn() {
