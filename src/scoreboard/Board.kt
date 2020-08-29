@@ -2,6 +2,8 @@ package scoreboard
 
 //The class of game score board.
 class Board {
+
+    /*
     //The first section of the Score board.
     //The sum of these number over 35, the player given bonus points.
     var onePly1Cnt: Int = 0; var onePly2Cnt: Int = 0 //number of player1's dice which has 1
@@ -28,7 +30,15 @@ class Board {
     //If winner variable is 0, there is no winner yet.
     var winner: Int = 0
 
+     */
+
+    var playerName = ""
+    var pointList = mutableListOf<Int>(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+    var totalPoint = 0
+
+
     fun initBoard() {
+        /*
         this.player1Name = null;   this.player2Name = null
 
         this.onePly1Cnt = 0;       this.onePly2Cnt = 0
@@ -47,6 +57,12 @@ class Board {
 
         this.totalPly1 = 0;        this.totalPly2 = 0
         this.winner = 0
+
+         */
+
+        playerName = ""
+        pointList = mutableListOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+        totalPoint = 0
     }
 
     //function to set player name on the board.
@@ -54,13 +70,16 @@ class Board {
     //player name still remain and needed to player class.
     //if we could access player.player#Name freely on the handler,
     //this function doesn't need anymore.
-    fun setPlayerName(player1: String, player2: String): Boolean{
-        this.player1Name = player1
-        this.player2Name = player2
+    fun setPlayerName(nameParameter: String): Boolean{
+        this.playerName = nameParameter
 
         //if player's name doesn't exist, return false.
         //to verify name input.
-        return !((this.player1Name != null) && (this.player2Name != null))
+        return this.playerName != ""
+    }
+
+    fun setPoint(typeLocation: Int, point: Int){
+
     }
 
 
