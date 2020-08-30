@@ -34,124 +34,57 @@ object RuleHandler {
 
     }
 
-    //
-    fun turnPlayer1() {
-
-        player1.rollDice()
-        player1.selectDice()
-        //println(CheckHands.checkDiceNumber(player1.savedDiceNumberList))
-        checkDice()
-        //print player1's board
-        Stream.boardPrint(boardPlayer1)
-        choicePlayer1()
-
-        player1.rollDice()
-        player1.selectDice()
-        //println(CheckHands.checkDiceNumber(player1.savedDiceNumberList))
-        checkDice()
-        //print player1's board
-        Stream.boardPrint(boardPlayer1)
-        choicePlayer1()
-
-        player1.rollDice()
-        player1.endPlayerTurn()
-        //println(CheckHands.checkDiceNumber(player1.savedDiceNumberList))
-        checkDice()
-        //there must be filled when it takes last turn.
-        //print player1's board
-        Stream.boardPrint(boardPlayer1)
-        choicePlayer1(1)
-
-
-
+    //Encapsulation of each player's turn.
+    fun turns(){
+        turnPlayer(player1, boardPlayer1)
+        turnPlayer(player2, boardPlayer2)
     }
 
-    fun turnPlayer2(): Boolean {
-        player2.rollDice()
-        player2.selectDice()
-        //println(CheckHands.checkDiceNumber(player2.savedDiceNumberList))
-        checkDice()
-        //print player1's board
-        Stream.boardPrint(boardPlayer2)
-        if (choicePlayer2()){
-            return true
-        }
+    //each player's turn has given parameters player instance, and its board instance.
+    private fun turnPlayer(player: Player, boardPlayer: Board){
 
-        player2.rollDice()
-        player2.selectDice()
-        //println(CheckHands.checkDiceNumber(player2.savedDiceNumberList))
-        checkDice()
-        //print player1's board
-        Stream.boardPrint(boardPlayer2)
-        if (choicePlayer2()){
-            return true
-        }
+        //first turn
+        //////////////////////
+        player.rollDice()
+        player.selectDice()
+        //values in pointListPlayer are available to save in the board.
+        var pointListPlayer: MutableList<Int> = checkDice(player)
+        Stream.boardPrint(boardPlayer)
+        choicePlayer(player, boardPlayer, pointListPlayer)
 
-        player2.rollDice()
-        player2.endPlayerTurn()
-        //println(CheckHands.checkDiceNumber(player2.savedDiceNumberList))
-        checkDice()
-        //there must be filled when it takes last turn.
-        //print player1's board
-        Stream.boardPrint(boardPlayer2)
-        if (choicePlayer2(1)){
-            return true
-        }
+        //second turn
+        //////////////////////
+        player.rollDice()
+        player.selectDice()
+        pointListPlayer = checkDice(player)
+        Stream.boardPrint(boardPlayer)
+        choicePlayer(player, boardPlayer, pointListPlayer)
 
-
-        else{
-            return false
-        }
+        //third, last turn
+        //////////////////////
+        player.rollDice()
+        player.endPlayerTurn()
+        pointListPlayer = checkDice(player)
+        Stream.boardPrint(boardPlayer)
+        choicePlayer(player, boardPlayer, pointListPlayer, 1)
     }
 
-    fun checkDice() {
-
-        pointListPlayer1 = CheckHands.checkDiceNumber(player1.savedDiceNumberList)
-        pointListPlayer2 = CheckHands.checkDiceNumber(player2.savedDiceNumberList)
-
-        //println(pointListPlayer1)
-        //println(pointListPlayer2)
-
-        //val player1SameNumberList = CheckHands.sameCheck(player1)
-        //val player2SameNumberList = CheckHands.sameCheck(player2)
-
-        //println(player1SameNumberList)
-        //println(player2SameNumberList)
+    private fun checkDice(player: Player): MutableList<Int> {
+        return CheckHands.checkDiceNumber(player.savedDiceNumberList)
     }
 
-    private fun choicePlayer1(lastChoice: Int = 0) {
+    private fun choicePlayer(player: Player, boardPlayer: Board, pointList: MutableList<Int>, lastChoice: Int = 0){
 
-        //print available points.
-        while (true) {
-            val choice = Stream.choiceInput(player1, pointListPlayer1)
-            val verify = boardPlayer1.setPoint(choice, pointListPlayer1)
+        while (true){
+            val choice = Stream.choiceInput(player, pointList)
+            val verify = boardPlayer.setPoint(choice, pointList)
             if (((verify == 1) && (lastChoice == 1)) || (verify == -1)){
-                println("please input available choice.")
+                println("Please input available choice.")
                 continue
             }
             else{
                 break
             }
         }
-        //println(boardPlayer1.pointList)
-    }
-
-    private fun choicePlayer2(lastChoice: Int = 0): Boolean {
-        var choice: Int
-
-        //print available points.
-        while (true) {
-            choice = Stream.choiceInput(player2, pointListPlayer2)
-            val verify = boardPlayer2.setPoint(choice, pointListPlayer2)
-            if (((verify == 1) && (lastChoice == 1)) || (verify == -1)){
-                continue
-            }
-            else{
-                break
-            }
-
-        }
-        return choice != 0
-        //println(boardPlayer2.pointList)
     }
 }
