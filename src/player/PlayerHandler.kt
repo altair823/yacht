@@ -1,6 +1,5 @@
 package player
 
-import algorithm.CheckHands
 import dice.Dice
 import iostream.Stream
 
@@ -21,6 +20,11 @@ class Player(){
     fun setPlayerName() {
         //input player name
         playerName = Stream.nameIO()
+    }
+
+    fun initForTurn(){
+        remainDiceCount = 5
+        savedDiceNumberList = mutableListOf<Int>()
     }
 
     fun rollDice() {

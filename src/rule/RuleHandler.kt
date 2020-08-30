@@ -4,7 +4,6 @@ import player.Player
 import scoreboard.Board
 import algorithm.CheckHands
 import iostream.Stream
-import kotlin.test.assertFalse
 
 
 //Game rule handler
@@ -25,8 +24,8 @@ object RuleHandler {
 
         player1.setPlayerName(); player2.setPlayerName()
 
-        boardPlayer1.setPlayerName(player1.playerName)
-        boardPlayer2.setPlayerName(player2.playerName)
+        boardPlayer1.playerName = player1.playerName
+        boardPlayer2.playerName = player2.playerName
 
     }
 
@@ -39,6 +38,10 @@ object RuleHandler {
     //each player's turn has given parameters player instance, and its board instance.
     private fun turnPlayer(player: Player, boardPlayer: Board): Boolean{
 
+        //init values
+        //////////////////////
+        player.initForTurn()
+
         //first turn
         //////////////////////
         player.rollDice()
@@ -48,7 +51,7 @@ object RuleHandler {
         Stream.boardPrint(boardPlayer)
         //value which check the choice of player. if the value is true,
         //it means that player has a choice, and handler passes its turn.
-        var passTurnValue: Boolean = choicePlayer(player, boardPlayer, pointListPlayer)
+        var passTurnValue: Boolean = choicePlayer(boardPlayer, pointListPlayer)
 
         //if player choose its number,
         //the player's turn end.
@@ -62,7 +65,7 @@ object RuleHandler {
         player.selectDice()
         pointListPlayer = checkDice(player)
         Stream.boardPrint(boardPlayer)
-        passTurnValue = choicePlayer(player, boardPlayer, pointListPlayer)
+        passTurnValue = choicePlayer(boardPlayer, pointListPlayer)
 
         if (passTurnValue == true) {
             return true
@@ -74,7 +77,7 @@ object RuleHandler {
         player.endPlayerTurn()
         pointListPlayer = checkDice(player)
         Stream.boardPrint(boardPlayer)
-        passTurnValue = choicePlayer(player, boardPlayer, pointListPlayer, 1)
+        passTurnValue = choicePlayer(boardPlayer, pointListPlayer, 1)
 
         if (passTurnValue == true) {
             return true
@@ -89,13 +92,14 @@ object RuleHandler {
         return CheckHands.checkDiceNumber(player.savedDiceNumberList)
     }
 
-    private fun choicePlayer(player: Player, boardPlayer: Board, pointList: MutableList<Int>, lastChoice: Int = 0): Boolean{
+    private fun choicePlayer(boardPlayer: Board, pointList: MutableList<Int>, lastChoice: Int = 0): Boolean{
 
         var choice: Int
 
         while (true){
-            choice = Stream.choiceInput(player, pointList)
+            choice = Stream.choiceInput(pointList)
             val verify = boardPlayer.setPoint(choice, pointList)
+            println(boardPlayer.pointList)
             if (((verify == 1) && (lastChoice == 1)) || (verify == -1)){
                 println("Please input available choice.")
                 continue

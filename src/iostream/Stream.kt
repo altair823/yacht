@@ -1,6 +1,5 @@
 package iostream
 
-import player.Player
 import scoreboard.Board
 
 object Stream{
@@ -94,7 +93,7 @@ object Stream{
     }
 
     //input choice of player's hands.
-    fun choiceInput(player: Player, playerPoint: List<Int>): Int{
+    fun choiceInput(playerPoint: List<Int>): Int{
 
         println("Available point list >> ")
         for (i in 0..11 step 2){
@@ -103,7 +102,7 @@ object Stream{
 
         while (true) {
             print("Please input point number >> ")
-            var choice = readLine().toString()
+            val choice = readLine().toString()
 
             /*
             //section of checking null and range of choice input.
@@ -130,13 +129,19 @@ object Stream{
     fun boardPrint(boardPlayer: Board){
         println("${boardPlayer.playerName}'s board >> ")
 
+        //mutableList for printing board.
         val tempPointList = mutableListOf<Int>(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
         for (i in 0..11){
-            if (boardPlayer.pointList == null){
-                tempPointList[i] == 0
+            //if there is no value in the board point list,
+            if (boardPlayer.pointList[i] == null){
+                //print zero
+                //need to change because we need to differentiate
+                //with point section in the board which has value.
+                tempPointList[i] = 0
             }
             else{
-                tempPointList[i] == boardPlayer.pointList[i]
+                //there is value, print that value.
+                tempPointList[i] = boardPlayer.pointList[i]!!
             }
         }
 
@@ -175,7 +180,4 @@ object Stream{
         println()
     }
 
-}
-
-fun main() {
 }
