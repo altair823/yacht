@@ -1,4 +1,4 @@
-package main
+
 
 import rule.RuleHandler
 
@@ -11,3 +11,4 @@ fun main() {
     RuleHandler.turns()
     RuleHandler.turns()
 }
+
