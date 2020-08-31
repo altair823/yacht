@@ -11,6 +11,19 @@ Description:
 
 package algorithm
 
+//checking four of a kind with brute force is unable
+val bruteForceDataFK1 = listOf(1, 1, 1, 1)
+val bruteForceDataFK2 = listOf(2, 2, 2, 2)
+val bruteForceDataFK3 = listOf(3, 3, 3, 3)
+val bruteForceDataFK4 = listOf(4, 4, 4, 4)
+val bruteForceDataFK5 = listOf(5, 5, 5, 5)
+val bruteForceDataFK6 = listOf(6, 6, 6, 6)
+val bruteForceDataFK = listOf<List<Int>>(
+        bruteForceDataFK1, bruteForceDataFK2, bruteForceDataFK3,
+        bruteForceDataFK4, bruteForceDataFK5, bruteForceDataFK6
+)
+
+
 val bruteForceDataFH11 = listOf(1, 1, 1, 2, 2)
 val bruteForceDataFH12 = listOf(1, 1, 1, 3, 3)
 val bruteForceDataFH13 = listOf(1, 1, 1, 4, 4)

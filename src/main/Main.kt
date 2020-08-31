@@ -13,11 +13,9 @@ import rule.RuleHandler
 
 fun main() {
     RuleHandler.gameStart()
-    RuleHandler.turns()
-    RuleHandler.turns()
-    RuleHandler.turns()
-    RuleHandler.turns()
-    RuleHandler.turns()
-    RuleHandler.turns()
+    for (i in 1..12){
+        RuleHandler.turns()
+    }
+
 }
 

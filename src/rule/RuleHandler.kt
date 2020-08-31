@@ -38,6 +38,7 @@ object RuleHandler {
 
         boardPlayer1.playerName = player1.playerName
         boardPlayer2.playerName = player2.playerName
+        println()
 
     }
 
@@ -56,6 +57,7 @@ object RuleHandler {
 
         //first turn
         //////////////////////
+        Stream.boardPrint(boardPlayer)
         player.rollDice()
         player.selectDice()
         //values in pointListPlayer are available to save in the board.

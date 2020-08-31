@@ -72,6 +72,8 @@ object CheckHands {
                     tempSameNumberCount += 1
                 }
             }
+            //if there is four or more same number,
+            //return total sum point
             if (tempSameNumberCount >= 4){
                 var total = 0
                 for (k in diceNumberList) { total += k }
@@ -102,6 +104,8 @@ object CheckHands {
         //search small straight with brute force algorithm
         for (i in bruteForceDataSS){
 
+            //if there is pattern of small straight,
+            //return 15(static)
             if (diceNumberList.containsAll(i)){
                 return 15
             }
