@@ -1,3 +1,14 @@
+/*
+Latest update: 20-08-31 09:53
+
+Contributor: altair823
+
+Description:
+    Date for brute force point-checking algorithm.
+    Compare with current dice which player rolled, and if there be the same dice numbers,
+    system knows player has point which is matched with current dice.
+ */
+
 package algorithm
 
 val bruteForceDataFH11 = listOf(1, 1, 1, 2, 2)

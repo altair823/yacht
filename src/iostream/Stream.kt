@@ -1,3 +1,14 @@
+/*
+Latest update: 20-08-31 16:22
+
+Contributor: altair823
+
+Description:
+    Print everything related with needed to running program
+    and input all variable we need.
+ */
+
+
 package iostream
 
 import scoreboard.Board
@@ -176,6 +187,12 @@ object Stream{
         }
 
         //print total point
+        var tempTotalPoint = 0
+        for (i in tempPointList){
+            tempTotalPoint += i
+        }
+        boardPlayer.totalPoint = tempTotalPoint
+
         println("total point: [${boardPlayer.totalPoint}]")
         println()
     }

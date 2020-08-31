@@ -1,3 +1,15 @@
+/*
+Latest update: 20-08-31 16:13
+
+Contributor: altair823
+
+Description:
+    Singleton which is handler of this game.
+    Player instance, board instance initialize in this singleton.
+
+ */
+
+
 package rule
 
 import player.Player
@@ -99,7 +111,7 @@ object RuleHandler {
         while (true){
             choice = Stream.choiceInput(pointList)
             val verify = boardPlayer.setPoint(choice, pointList)
-            println(boardPlayer.pointList)
+            //println(boardPlayer.pointList)
             if (((verify == 1) && (lastChoice == 1)) || (verify == -1)){
                 println("Please input available choice.")
                 continue
@@ -112,7 +124,7 @@ object RuleHandler {
         //if the choice has a value(if the player choose),
         //the function returns 1 to pass the player's turn.
         //or else, returns 0 to do not pass the turn.
-        println("$choice--------------------------")
+        //println("$choice--------------------------")
         if (choice == 0){
             return false
         }

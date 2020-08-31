@@ -1,3 +1,14 @@
+/*
+Latest update: 20-08-31 10:02
+
+Contributor: altair823
+
+Description:
+    Singleton that checking current dice of player, and return a mutable list which represent all possible point
+    to insert into board.
+    The main function of this singleton is checkDiceNumber.
+ */
+
 package algorithm
 
 object CheckHands {

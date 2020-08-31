@@ -1,3 +1,18 @@
+/*
+Latest update: 20-08-31 16:17
+
+Contributor: altair823
+
+Description:
+    File which is define the player class.
+    in the player class,
+    Player name variable, number of dice which is remain and saved in player's hand variable
+    is defined and initialized.
+    Need two instance of player for a game.
+
+*/
+
+
 package player
 
 import dice.Dice
