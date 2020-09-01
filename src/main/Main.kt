@@ -1,6 +1,10 @@
 /*
 Latest update: 20-08-31 16:27
 
+Current Version:
+    Version 0.1
+    Version 0.2
+
 Contributor: altair823
 
 Description:
@@ -16,6 +20,6 @@ fun main() {
     for (i in 1..12){
         RuleHandler.turns()
     }
-
+    RuleHandler.end()
 }
 

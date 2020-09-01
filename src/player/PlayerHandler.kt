@@ -1,6 +1,10 @@
 /*
 Latest update: 20-08-31 16:17
 
+Current Version:
+    Version 0.1
+    Version 0.2
+
 Contributor: altair823
 
 Description:
@@ -34,12 +38,12 @@ class Player(){
 
     fun setPlayerName() {
         //input player name
-        playerName = Stream.nameIO()
+        this.playerName = Stream.nameIO()
     }
 
     fun initForTurn(){
-        remainDiceCount = 5
-        savedDiceNumberList = mutableListOf<Int>()
+        this.remainDiceCount = 5
+        this.savedDiceNumberList = mutableListOf<Int>()
     }
 
     fun rollDice() {
@@ -47,7 +51,7 @@ class Player(){
         //reassign list of dice number.
         this.diceNumberList = Dice().roll(this.remainDiceCount)
 
-        Stream.numPrint(diceNumberList, listType = "Rolled", playerName = playerName)
+        Stream.numPrint(this.diceNumberList, listType = "Rolled", playerName = this.playerName)
         //print("<Dice> : "); println(this.diceNumberList)
     }
 
@@ -89,13 +93,13 @@ class Player(){
     }
 
     fun endPlayerTurn() {
-        savedDiceNumberList.addAll(diceNumberList)
+        this.savedDiceNumberList.addAll(this.diceNumberList)
         numberPrint()
         println()
     }
 
     private fun numberPrint() {
-        Stream.numPrint(savedDiceNumberList, listType = "Saved" , playerName = playerName)
+        Stream.numPrint(savedDiceNumberList, listType = "Saved" , playerName = this.playerName)
         //print("|Saved : "); println(savedDiceNumber)
     }
 }

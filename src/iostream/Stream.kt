@@ -1,5 +1,9 @@
 /*
-Latest update: 20-08-31 16:22
+Latest update: 20-09-01 13:44
+
+Current Version:
+    Version 0.1
+    Version 0.2
 
 Contributor: altair823
 
@@ -11,6 +15,7 @@ Description:
 
 package iostream
 
+import player.Player
 import scoreboard.Board
 
 object Stream{
@@ -137,8 +142,8 @@ object Stream{
         }
     }
 
-    fun boardPrint(boardPlayer: Board){
-        println("${boardPlayer.playerName}'s board >> ")
+    fun boardPrint(player: Player, boardPlayer: Board){
+        println("${player.playerName}'s board >> ")
 
         //mutableList for printing board.
         val tempPointList = mutableListOf<Int>(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -157,35 +162,61 @@ object Stream{
         }
 
         //print all inputable section of board.
-        for (i in 0..11 step 2){
-            when (i){
+        for (i in 0..5 step 2) {
+            when (i) {
                 0 -> {
-                    print("one: [${tempPointList[0]}]             |  ")
-                    println("two: [${tempPointList[1]}]")
+                    print("1. one: [${tempPointList[0]}]             |  ")
+                    println("2. two: [${tempPointList[1]}]")
                 }
                 2 -> {
-                    print("three: [${tempPointList[2]}]           |  ")
-                    println("four: [${tempPointList[3]}]")
+                    print("3. three: [${tempPointList[2]}]           |  ")
+                    println("4. four: [${tempPointList[3]}]")
                 }
                 4 -> {
-                    print("five: [${tempPointList[4]}]            |  ")
-                    println("six: [${tempPointList[5]}]")
-                }
-                6 -> {
-                    print("choice: [${tempPointList[6]}]          |  ")
-                    println("four of a kind: [${tempPointList[7]}]")
-                }
-                8 -> {
-                    print("full house: [${tempPointList[8]}]      |  ")
-                    println("small straight: [${tempPointList[9]}]")
-                }
-                10 -> {
-                    print("large straight: [${tempPointList[10]}]  |  ")
-                    println("yacht: [${tempPointList[11]}]")
+                    print("5. five: [${tempPointList[4]}]            |  ")
+                    println("6. six: [${tempPointList[5]}]")
                 }
             }
         }
 
+        boardPlayer.calSubTotal()
+
+        /*
+        //calculate subtotal and print it.
+        var tempSubtotal = 0
+        for (i in 0..5){
+            tempSubtotal += tempPointList[i]
+        }
+        if (tempSubtotal >= 63){
+            tempSubtotal += 35
+        }
+        boardPlayer.subTotal = tempSubtotal
+
+         */
+        println("Subtotal: [${boardPlayer.subTotal}]")
+
+
+
+        for (i in 6..11 step 2){
+            when (i) {
+                6 -> {
+                    print("7. choice: [${tempPointList[6]}]          |  ")
+                    println("8. four of a kind: [${tempPointList[7]}]")
+                }
+                8 -> {
+                    print("9. full house: [${tempPointList[8]}]      |  ")
+                    println("10. small straight: [${tempPointList[9]}]")
+                }
+                10 -> {
+                    print("11. large straight: [${tempPointList[10]}] |  ")
+                    println("12. yacht: [${tempPointList[11]}]")
+                }
+            }
+        }
+
+        boardPlayer.calTotal()
+
+        /*
         //print total point
         var tempTotalPoint = 0
         for (i in tempPointList){
@@ -193,6 +224,7 @@ object Stream{
         }
         boardPlayer.totalPoint = tempTotalPoint
 
+         */
         println("total point: [${boardPlayer.totalPoint}]")
         println()
     }
