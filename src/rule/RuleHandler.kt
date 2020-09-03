@@ -57,21 +57,6 @@ object RuleHandler {
     //if all turns end, calculate total point(include bonus) and print winner.
     fun end(){
 
-        /*
-        //if endPlayer function returns false,
-        //there is blank in the board.
-        if (!endPlayer(boardPlayer1)){
-            throw NoSuchFieldException("There is null value in player1's board!")
-        }
-        if (!endPlayer(boardPlayer2)){
-            throw NoSuchFieldException("There is null value in player2's board!")
-        }
-
-        //if endPlayer function return true(there is no blank),
-        //
-
-         */
-
         if (boardPlayer1.totalPoint > boardPlayer2.totalPoint){
             println()
             println()
@@ -112,7 +97,7 @@ object RuleHandler {
 
         //if player choose its number,
         //the player's turn end.
-        if (passTurnCheck == true) {
+        if (passTurnCheck) {
             return true
         }
 
@@ -125,7 +110,7 @@ object RuleHandler {
         passTurnCheck = choicePlayer(boardPlayer, pointListPlayer)
         println()
 
-        if (passTurnCheck == true) {
+        if (passTurnCheck) {
             return true
         }
 
@@ -138,13 +123,11 @@ object RuleHandler {
         Stream.boardPrint(player, boardPlayer)
         passTurnCheck = choicePlayer(boardPlayer, pointListPlayer, 1)
 
-        if (passTurnCheck == true) {
+        if (passTurnCheck) {
             return true
         }
 
-        else{
-            return false
-        }
+        return false
     }
 
     private fun checkDice(player: Player): MutableList<Int> {
@@ -173,11 +156,11 @@ object RuleHandler {
         //the function returns 1 to pass the player's turn.
         //or else, returns 0 to do not pass the turn.
         //println("$choice--------------------------")
-        if (choice == 0){
-            return false
+        return if (choice == 0){
+            false
         }
         else{
-            return true
+            true
         }
     }
 

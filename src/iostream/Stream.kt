@@ -4,6 +4,7 @@ Latest update: 20-09-01 13:44
 Current Version:
     Version 0.1
     Version 0.2
+    Version 0.3
 
 Contributor: altair823
 
@@ -146,18 +147,18 @@ object Stream{
         println("${player.playerName}'s board >> ")
 
         //mutableList for printing board.
-        val tempPointList = mutableListOf<Int>(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+        val tempPointList = mutableListOf("", "", "", "", "", "", "", "", "", "", "", "")
         for (i in 0..11){
             //if there is no value in the board point list,
             if (boardPlayer.pointList[i] == null){
                 //print zero
                 //need to change because we need to differentiate
                 //with point section in the board which has value.
-                tempPointList[i] = 0
+                tempPointList[i] = "-"
             }
             else{
                 //there is value, print that value.
-                tempPointList[i] = boardPlayer.pointList[i]!!
+                tempPointList[i] = "${boardPlayer.pointList[i]}"
             }
         }
 
@@ -181,21 +182,7 @@ object Stream{
 
         boardPlayer.calSubTotal()
 
-        /*
-        //calculate subtotal and print it.
-        var tempSubtotal = 0
-        for (i in 0..5){
-            tempSubtotal += tempPointList[i]
-        }
-        if (tempSubtotal >= 63){
-            tempSubtotal += 35
-        }
-        boardPlayer.subTotal = tempSubtotal
-
-         */
         println("Subtotal: [${boardPlayer.subTotal}]")
-
-
 
         for (i in 6..11 step 2){
             when (i) {
@@ -216,17 +203,25 @@ object Stream{
 
         boardPlayer.calTotal()
 
-        /*
-        //print total point
-        var tempTotalPoint = 0
-        for (i in tempPointList){
-            tempTotalPoint += i
-        }
-        boardPlayer.totalPoint = tempTotalPoint
-
-         */
         println("total point: [${boardPlayer.totalPoint}]")
         println()
     }
 
+    fun restartInput(): Boolean{
+        println()
+        while (true) {
+            print("Do you want play again?(y or n) >> ")
+            val restart = readLine().toString()
+            return if ((restart == "y") || (restart == "Y")){
+                true
+            } else if ((restart == "n") || (restart == "N")){
+                println("Game Over")
+                false
+            } else {
+                println("Please input correct answer!")
+                continue
+            }
+
+        }
+    }
 }

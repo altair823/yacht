@@ -48,7 +48,7 @@ object CheckHands {
     private fun sameCheck(diceNumberList: List<Int>): List<Int> {
 
         //count of same numbers.
-        val count = mutableListOf<Int>(0, 0, 0, 0, 0, 0)
+        val count = mutableListOf(0, 0, 0, 0, 0, 0)
 
         //store each number's count in the list.
         for (i in diceNumberList){ count[i-1] += i }

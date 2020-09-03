@@ -12,19 +12,26 @@ Description:
  */
 
 
+import iostream.Stream;
 import rule.RuleHandler;
 
 public class yjave {
-    public static void main(String[] args) {
+    public static void main() {
+        do {
+            RuleHandler.INSTANCE.gameStart();
+            int var0 = 1;
 
-        RuleHandler.INSTANCE.gameStart();
-        int var0 = 1;
+            for(byte var1 = 12; var0 <= var1; ++var0) {
+                RuleHandler.INSTANCE.turns();
+            }
 
-        for(byte var1 = 12; var0 <= var1; ++var0) {
-            RuleHandler.INSTANCE.turns();
-        }
+            RuleHandler.INSTANCE.end();
+        } while(Stream.INSTANCE.restartInput());
 
-        RuleHandler.INSTANCE.end();
+    }
 
+    // $FF: synthetic method
+    public static void main(String[] var0) {
+        main();
     }
 }

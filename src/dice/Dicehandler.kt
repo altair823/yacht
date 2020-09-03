@@ -1,10 +1,10 @@
 package dice
 
 //The class of a dice.
-class Dice() {
+class Dice {
 
     //Current number of dice.
-    val numberList = mutableListOf<Int>()
+    private val numberList = mutableListOf<Int>()
 
     //Rolling the dice.
     fun roll(diceCount: Int): MutableList<Int>{
